@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotaract Bologna Valle dell'Idice</title>
+    <meta name="description" content="Scopri il Rotaract Bologna Valle dell'Idice, un'associazione di giovani volontari impegnati in progetti sociali e di servizio nella comunità di Bologna e provincia.">
+    <meta name="keywords" content="Rotaract, Bologna, Valle dell'Idice, volontariato, giovani, service, comunità, progetti sociali, volontariato Budrio, volontariato Castenaso, volontariato Medicina">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff007a;
+            --secondary: #00bcd4;
+            --bg-dark: #121212;
+            --bg-light: #ffffff;
+            --text-light: #e0e0e0;
+            --text-dark: #222222;
+            --border-highlight: #ff007a;
+            --button-gradient: linear-gradient(45deg, #ff007a, #00bcd4);
+            --menu-background: #333333;
+            --menu-text: #ffffff;
+            --menu-highlight: #ff007a;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+            padding-top: 60px; /* For fixed header */
+        }
+
+        header {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-button {
+            background: var(--primary);
+            color: var(--text-light);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .menu-button:hover {
+            background: var(--secondary);
+            color: var(--text-light);
+        }
+
+        .menu-button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 60px; /* Adjust to be just below the header */
+            left: 0;
+            width: 100%;
+            background: var(--menu-background);
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            color: var(--menu-text);
+            font-size: 0.875rem;
+            border-radius: 20px;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease, background 0.3s ease;
+            overflow: hidden;
+        }
+
+        nav.active {
+            transform: scaleY(1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        nav a {
+            color: var(--menu-text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: var(--menu-highlight);
+            color: var(--bg-light);
+        }
+
+        .theme-toggle-button {
+            background: var(--primary);
+            color: var(--text-light);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .theme-toggle-button:hover {
+            background: var(--secondary);
+            color: var(--text-light);
+        }
+
+        main {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        section {
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            color: var(--text-light);
+        }
+
+        #chi-siamo {
+            background: linear-gradient(135deg, #ff007a, #ff6f61);
+        }
+
+        #dove-trovarci {
+            background: linear-gradient(135deg, #00bcd4, #009688);
+        }
+
+        #progetti {
+            background: linear-gradient(135deg, #333333, #666666);
+        }
+
+        #contattaci {
+            background: linear-gradient(135deg, #ff6f61, #ff007a);
+        }
+
+        #mappa {
+            background: linear-gradient(135deg, #009688, #00bcd4);
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            background: var(--button-gradient);
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .button:hover {
+            background: var(--border-highlight);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.4);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .menu-button {
+                padding: 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            nav {
+                padding: 0.5rem 0;
+                box-shadow: none;
+                font-size: 0.875rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            nav a {
+                padding: 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1rem;
+            }
+
+            .button {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-button" id="menu-toggle">
+            <svg viewBox="0 0 8 6" aria-hidden="true" class="h-auto w-2 stroke-zinc-500">
+                <path d="M1.75 1.75 4 4.25l2.25-2.5" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </button>
+        <button class="theme-toggle-button" id="theme-toggle">
+            Cambia Tema
+            <span class="emoji">🌞</span>
+        </button>
+    </header>
+
+    <nav id="menu">
+        <ul>
+            <li><a href="#chi-siamo">Chi Siamo</a></li>
+            <li><a href="#dove-trovarci">Dove Trovarci</a></li>
+            <li><a href="#progetti">I Nostri Progetti</a></li>
+            <li><a href="#contattaci">Contattaci</a></li>
+            <li><a href="#mappa">La nostra sede</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="chi-siamo">
+            <h2>Chi Siamo</h2>
+            <h3><strong>Rotaract Bologna Valle dell'Idice, partner del Rotary</strong></h3>
+            <p>Siamo un'associazione di service attiva a Bologna e provincia, impegnata a fare la differenza nella nostra comunità. Crediamo nel potere dei giovani di creare un impatto positivo attraverso progetti di volontariato e iniziative sociali. Facciamo parte del <a href="https://www.rotaryclubbolognavalledellidice.it"><strong>Rotary Bologna Valle dell'Idice</strong></a></p>
+            <p><strong>I nostri valori: </strong> leadership, amicizia, servizio, integrità, diversità.</p>
+        </section>
+
+        <section id="dove-trovarci">
+            <h2>Dove Trovarci</h2>
+            <p>Seguici su Instagram per rimanere aggiornato sulle nostre attività, eventi e progetti! Vuoi saperne di più o entrare anche tu a far parte di questo mondo? Contattaci in DM!</p>
+            <a href="https://www.instagram.com/rotaract_bologna_idice/" target="_blank" class="button">Seguici su Instagram</a>
+        </section>
+
+        <section id="progetti">
+            <h2>I Nostri Progetti</h2>
+            <p>Stiamo lavorando a progetti entusiasmanti che saranno presto disponibili. Continua a seguirci per scoprire come puoi contribuire a fare la differenza!</p>
+        </section>
+
+        <section id="contattaci">
+            <h2>Contattaci</h2>
+            <p>Per maggiori informazioni o per collaborare con noi, invia un'email a</p> <a href="mailto:prova@rotaractmail.it" class="button">prova@rotaractmail.it</a>
+        </section>
+
+        <section id="mappa">
+            <h2>La nostra sede</h2>
+            <p>Ristorante "Il Giardino" Via Gramsci, 20 Budrio - Bologna Tel.: 051 801128</p>
+            <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=11.518555755615234%2C44.52780905280745%2C11.544387817382812%2C44.54666847683046&amp;layer=mapnik&amp;marker=44.53724%2C11.53148&amp;zoom=14" style="border: 1px solid var(--border-highlight); pointer-events: none;"></iframe>
+            <br />
+            <br />
+            <small><a href="https://www.openstreetmap.org/?mlat=44.53724&amp;mlon=11.53148#map=19/44.53724/11.53148" target="_blank" class="button">Visualizza mappa ingrandita</a></small>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Rotaract Bologna Valle dell'Idice</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        });
+
+        document.getElementById('theme-toggle').addEventListener('click', function () {
+            const root = document.documentElement;
+            if (root.style.getPropertyValue('--bg-dark') === '#121212') {
+                root.style.setProperty('--bg-dark', '#ffffff');
+                root.style.setProperty('--bg-light', '#121212');
+                root.style.setProperty('--text-light', '#222222');
+                root.style.setProperty('--text-dark', '#e0e0e0');
+                root.style.setProperty('--menu-background', '#333333');
+                root.style.setProperty('--menu-text', '#ffffff');
+                root.style.setProperty('--menu-highlight', '#ff007a');
+                this.querySelector('.emoji').textContent = '🌜';
+            } else {
+                root.style.setProperty('--bg-dark', '#121212');
+                root.style.setProperty('--bg-light', '#ffffff');
+                root.style.setProperty('--text-light', '#e0e0e0');
+                root.style.setProperty('--text-dark', '#222222');
+                root.style.setProperty('--menu-background', '#333333');
+                root.style.setProperty('--menu-text', '#ffffff');
+                root.style.setProperty('--menu-highlight', '#ff007a');
+                this.querySelector('.emoji').textContent = '🌞';
+            }
+            document.body.style.background = root.style.getPropertyValue('--bg-dark');
+            document.body.style.color = root.style.getPropertyValue('--text-light');
+            document.querySelector('nav').style.background = root.style.getPropertyValue('--menu-background');
+        });
+    </script>
+</body>
+</html>
